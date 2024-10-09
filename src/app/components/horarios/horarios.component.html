@@ -1,0 +1,66 @@
+@if(mostrarModal){
+    <div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog"
+    aria-modal="true">
+    <div class="flex items-center justify-center min-h-screen px-4 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 bg-black bg-opacity-75 transition-opacity"></div>
+        <div
+            class="relative inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
+            <div class="bg-[#e8e8e8] p-6">
+                <h3 class="text-lg leading-6 font-medium text-[#212121]" id="modal-title">
+                    Horarios disponibles para {{ diaSeleccionado }}
+                </h3>
+                <hr class="border-t-2 border-[#555454] my-4">
+                <div class="mt-4">
+                    <div class="flex justify-center my-4">
+                        <ul class="grid grid-cols-2 gap-4 text-center">
+                            @for(horario of horariosDelDia; track horariosDelDia){
+                                <li class="mb-4">
+                                    <button (click)="seleccionarHorario(horario.hora, horario.disponible)" class="block w-full p-4 rounded-lg transition duration-300 ease-in-out
+                        hover:shadow-lg
+                        focus:outline-none focus:ring-2 focus:ring-blue-500
+                        bg-white border-2"
+                                        [ngClass]="horario.disponible ? 'border-green-500 text-green-500 hover:bg-green-100' : 'border-red-500 text-red-500 hover:bg-red-100'">
+                                        <span>
+                                            {{ horario.hora }} - {{ horario.disponible ? 'Disponible' : 'Ocupado' }}
+                                        </span>
+                                    </button>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    @if(horarioOcupado){
+                        <div class="mt-4 font-bold text-red-600 text-center">
+                            El horario no está disponible.
+                        </div>
+                    }
+                </div>
+                @if(mostrarFormRes){
+                    <div class="mt-4 flex justify-center">
+                        <div class="w-1/2 pl-4">
+                            <app-reserva-form [horarioSeleccionado]="horarioSeleccionado"
+                                (reservaConfirmada)="manejarReserva($event)">
+                            </app-reserva-form>
+                        </div>
+                    </div>
+                }
+                @if(resumenReserva){
+                    <div class="mt-4">
+                        <app-resumen-reserva [nombre]="resumenReserva.nombre" [correo]="resumenReserva.correo"
+                            [telefono]="resumenReserva.telefono" [dia]="resumenReserva.dia"
+                            [horario]="resumenReserva.horario">
+                        </app-resumen-reserva>
+                    </div>
+                }
+                <hr class="border-t-2 border-[#555454] my-4">
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button (click)="cerrarModal()" type="button"
+                    class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+}
+

@@ -1,0 +1,28 @@
+<form [formGroup]="userForm" (ngSubmit)="enviarReserva()" class="p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold text-center mb-4">Reservar Entrega de Concreto</h2>
+
+    <div class="mb-4">
+        <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre</label>
+        <input id="nombre" formControlName="nombre" type="text" required
+            class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200" />
+    </div>
+
+    <div class="mb-4">
+        <label for="correo" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+        <input id="correo" formControlName="correo" type="email" required
+            class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200" />
+    </div>
+
+    <div class="mb-4">
+        <label for="telefono" class="block text-sm font-medium text-gray-700">Teléfono</label>
+        <input id="telefono" formControlName="telefono" type="tel" required
+            class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200" />
+    </div>
+
+    <div class="mt-6">
+        <button type="submit"
+            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+            Reservar
+        </button>
+    </div>
+</form>
