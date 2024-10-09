@@ -50,7 +50,7 @@
     <div class="bg-white rounded-lg shadow-lg p-6 overflow-auto h-auto max-h-[500px]"> 
       <div class="p-6 bg-white rounded-lg shadow-md">
         <h2 class="text-xl font-semibold text-center mb-4">Historial de Reservas</h2>
-        <ng-container *ngIf="reservasAnteriores.length > 0; else noReservas">
+        @if(reservasAnteriores.length > 0){
           <ul class="divide-y divide-gray-600">
             <li *ngFor="let reserva of reservasAnteriores" class="py-4">
               <p><strong>Nombre:</strong> {{ reserva.nombre }}</p>
@@ -60,10 +60,9 @@
               <p><strong>Horario:</strong> {{ reserva.horario }}</p>
             </li>
           </ul>
-        </ng-container>
-        <ng-template #noReservas>
+        }@else {
           <p class="text-center text-gray-500">No tienes reservas anteriores.</p>
-        </ng-template>
+        }
       </div>
       <button (click)="mostrarModal = false" class="mt-4 bg-red-500 text-white px-4 py-2 rounded">Cerrar</button>
     </div>    
